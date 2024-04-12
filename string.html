@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+String methods
+      </title>
+      <body>
+        <h1>Avengrs</h1>
+        <p id="k">very bad</p>
+        <button onclick="fun()">press</button>
+        <button onclick="fun1()">press</button>
+        <p id="l"></p>
+      </body>
+</head>
+</html>
+
+<script>
+      var text="hulk,Thor,loki,antman";
+      var t1="spiderman";
+      var t2="ironman is \"very\" genius";
+      var t4=t1.at(1);
+      var x=new String("hulk");
+    var  part = text.slice(0,18);
+
+      document.getElementById("k").innerHTML=text.length+" <br> "+t1+"<br> "+t2+"<br>"+"hello everyone"+ typeof x +"<br>"+ typeof t1+"<br>"+t4;
+      
+      document.getElementById("l").innerHTML=part;
+
+      function fun() {
+        var te= document.getElementById("k").innerHTML;
+        document.getElementById("k").innerHTML=te.toUpperCase();
+      }
+
+      function fun1() {
+        var te= document.getElementById("k").innerHTML;
+        document.getElementById("k").innerHTML=te.toLowerCase;
+      }
+
+
+</script>
