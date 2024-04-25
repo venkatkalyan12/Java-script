@@ -36,7 +36,7 @@
 <body>
     <div class="align">
         <div class="login">
-            <form action="http://localhost:8080/loginservlet/loginservlet.jsp" method="post">
+            <form action="loginservlet" method="post">
                 <h1 style="text-align: center;color: aliceblue; font-family: 'Times New Roman', Times, serif; font-size: xxx-large;"> LOGIN</h1><br>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
