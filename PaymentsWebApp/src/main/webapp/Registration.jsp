@@ -42,7 +42,7 @@ body {
 		<br>
 		<h1 style="color: rgb(255, 255, 255); font-size: xxx-large;">REGISTER</h1>
 		<br>
-		<div class="register">
+		<div class="Register">
 
 			<form action="RegisterDAO">
 				<div class="form-floating mb-3">
