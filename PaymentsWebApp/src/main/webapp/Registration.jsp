@@ -44,7 +44,7 @@ body {
 		<br>
 		<div class="Register">
 
-			<form action="RegisterDAO">
+			<form action="RegisterDAO" method="post">
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="floatingInput"
 						placeholder="" name="firstname"> <label for="floatingInput">First
