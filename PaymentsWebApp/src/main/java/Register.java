@@ -1,37 +1,49 @@
-import java.io.IOException;
+
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
+/**
+ * Servlet implementation class Register
+ */
+@WebServlet("/Register")
 public class Register extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
        
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
     public Register() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String dateOfBirth = request.getParameter("DateOfBirth");
-        String mobileNo = request.getParameter("MobileNo");
-        String address = request.getParameter("Address");
-        String email = request.getParameter("Email");
-        String password = request.getParameter("password");
-        
-        // Create a User object with the provided details
-        user_details user = new user_details(firstname, lastname, dateOfBirth, mobileNo, address, email, password);
-        
-        // Instantiate RegisterDAO and call the insert method
-        RegisterDAO rd = new RegisterDAO();
-        String result = rd.insert(user);
-        response.getWriter().print(result);
-    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String uname=request.getParameter("uname");
+		String password=request.getParameter("password");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		
+		Member member=new Member(uname,password,email,phone);
+		RegisterDao rdao=new RegisterDao();
+		String result=rdao.insert(member);
+		response.getWriter().print(result);
+	}
 
 }
