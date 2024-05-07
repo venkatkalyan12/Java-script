@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegisterDao {
@@ -40,16 +41,18 @@ public class RegisterDao {
 	 loadDriver(dbDriver);
 	 Connection con=getConnection();
 	 String result="Registered Successfully";
-	 String sql="insert into member values(?,?,?,?)";
+	 String sql="insert into member values(?,?,?,?,?)";
 	 
 	 PreparedStatement ps;
 	try {
 		ps = con.prepareStatement(sql);
 	
+
 	 ps.setString(1,member.getUname());
-	 ps.setString(2,member.getPassword());
-	 ps.setString(3,member.getEmail());
-	 ps.setString(4,member.getPhone());
+	 ps.setString(2,member.getDateOfBirth());
+	 ps.setString(3,member.getPhone());
+	 ps.setString(4,member.getEmail());
+	 ps.setString(5,member.getPassword());
 	 ps.executeUpdate();
 	 
 	} catch (SQLException e) {
@@ -59,5 +62,6 @@ public class RegisterDao {
 	}
 	return result; 
  }
- 
 }
+ 
+

@@ -11,130 +11,153 @@
 
 </head>
 <style>
-.navbar{
-    align-items: baseline;
-    background-image: linear-gradient(to right,rgb(160, 160, 167),rgb(209, 209, 244));
-    height: 70px;
-    button{
-        margin:10px;
-        border: 1px solid black;
-        border-radius: 10px;
-        justify-content: end;
-    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-.account_details{
-	height : 200px;
-	width : 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    background-color:rgb(234, 234, 241) ;
-    box-shadow: 3px 3px 9px 3px rgba(98, 80, 138, 0.67);
 
-	button{
-	width : 300px;
-	height : 100px;
-	border : 1px solid black;
-	border-radius : 10px
-	}
-	ul{
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+    padding-left: 20px;
+}
+
+nav ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
-	
+.right{
+text-align: right;
 }
- #list{
- height : 200px;
-	width : 100%;
-     align-items: center;
-    display: flex;
-    background-color:rgb(234, 234, 241) ;
-    box-shadow: 3px 3px 9px 3px rgba(98, 80, 138, 0.67);
-    	ul{
-    list-style-type: none;
-    margin : 10px;
+.left{
+text-align: left;
 }
- }
- .bankList{
- 	height : auto;
-	width : 100%;
-	align-items : center;
-    display: flex;
-    margin-top : 20px;
-   
-    
-       	ul{
-    list-style-type: none;
-    
+.center{
+text-align: center;
 }
-  button{
-        margin:10px;
-        border: 1px solid black;
-        border-radius: 10px;
-        justify-content: end;
-    }
- }
- .acct{
- height:auto;
- width:auto;
-  background-color:rgb(234, 234, 241) ;
-  border-radius : 10px;
-  box-shadow: 3px 3px 3px 3px rgba(98, 80, 138, 0.67);
-  margin : 10px;
-  padding : 10px;
- }
- .addaccount{
- height : 100px;
- width : 200px;
- margin : 50px;
- border-radius : 10px;
- }
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.card {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 
 </style>
 <body>
-  <div class = "navbar">
-        <h4 >BankingApplication</h4>
-        <button>log out</button>
-
-    </div>
-    
-    <h2 style="padding: 10px;">Welcome </h2>
-    
-     
-  
-   if(list.size()==0){%>
-    <div class="account_details">
-           <form action = "http://localhost:8080/WebBankApplication/addbank.jsp">
-           <input type = "submit" value="addBank" class = "addaccount"/>
-           </form>
-    </div>
-   
-   
- 
-       <div   id = "list">
+    <header>
+    <div class="center">
+        <h1>Payment Application</h1>
+        </div>
+        <nav>
             <ul>
-            <li><h4>PrimaryBankAccount : </h4></li>
-            <li><h4>BankAccountBalance : ></h4></li>
+            <div class="left">
+            <%String userName = (String) session.getAttribute("uname");  %>
+                    <h3>Welcome, <%= userName %></h3>
+                </div>
+                <div class="right">
+                <li><a href="#">Transactions</a></li>
+                <li><a href="#">Customers</a></li>
+                <li><a href="#">Settings</a></li>
+                </div>
             </ul>
-    </div>
-  
-   
-   <div class = "bankList" > 
-  
-       <div class = "acct" >
-        <ul>
-            <li><h6> </h6></li>
-            <li><h6>AccountNumber : </h6></li>
-            <li><h6>Balance       : </h6></li>
-            <li><h6>IFSC          : </h6></li>
-            </ul>
-       
-       </div>
-          
- 
-     <form action = "http://localhost:8080/WebBankApplication/addbank.jsp">
-           <input type = "submit" value="addBank" class = "addaccount"/>
-           </form>
-  
-   </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="overview">
+            <h2>Overview</h2>
+            <div class="card">
+                <h3>Total Transactions</h3>
+                <p>500</p>
+            </div>
+            <div class="card">
+                <h3>Revenue</h3>
+                <p>$10,000</p>
+            </div>
+            <div class="card">
+                <h3>New Customers</h3>
+                <p>50</p>
+            </div>
+        </section>
+
+        <section id="transactions">
+            <h2>Recent Transactions</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>2024-05-01</td>
+                    <td>John Doe</td>
+                    <td>$100</td>
+                    <td>Success</td>
+                </tr>
+                <tr>
+                    <td>2024-04-28</td>
+                    <td>Jane Smith</td>
+                    <td>$50</td>
+                    <td>Failed</td>
+                </tr>
+                <!-- Add more transaction rows as needed -->
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Payment Gateway Inc.</p>
+    </footer>
 </body>
 </html>

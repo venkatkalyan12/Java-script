@@ -29,7 +29,7 @@
                     <button type='button'onclick='register()'class='toggle-btn'>Register</button>
                 </div>
                 
-                <form  id='login' class='input-group-login'>
+                <form action="LoginServlet" method="post"  id='login' class='input-group-login'>
                 
                      <input type='email'class='input-field'placeholder='Email Id'name="email" required>
 		    <input type='password'class='input-field'placeholder='Enter Password'name="password" required>
@@ -39,9 +39,12 @@
 		 
 		 <form action="Register" method="post" id='register' class='input-group-register'>
 		     <input type='text'class='input-field'placeholder='First Name'name="uname" required>
+		     <input type='date'class='input-field'placeholder='Date of Birth'name="DateOfBirth" required>
+		      <input type='text'class='input-field'placeholder='phone no 'name="phone" required>
+		      <input type='email'class='input-field'placeholder='Email Id'name="email" required>
 		     <input type='password'class='input-field'placeholder='Enter Password'name="password" required>
-		       <input type='email'class='input-field'placeholder='Email Id'name="email" required>
-		     <input type='text'class='input-field'placeholder='phone no 'name="phone" required>
+		       
+		     
 		     <input type='checkbox'class='check-box'><span>I agree to the terms and conditions</span>
                     <button type='submit'class='submit-btn'>Register</button>
 	         </form>
