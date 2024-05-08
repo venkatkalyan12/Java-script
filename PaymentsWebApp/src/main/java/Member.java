@@ -1,4 +1,5 @@
 
+
 public class Member {
 	
 	private String uname,DateOfBirth,phone,email,password;

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.List" %>
+<%@ page import="Entity.BankAccount" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,65 +98,42 @@ footer {
 </style>
 <body>
     <header>
-    <div class="center">
-        <h1>Payment Application</h1>
+        <div class="center">
+            <h1>Payment Application</h1>
         </div>
         <nav>
             <ul>
-            <div class="left">
-            <%String userName = (String) session.getAttribute("uname");  %>
+                <div class="left">
+                    <% String userName = (String) session.getAttribute("uname"); %>
                     <h3>Welcome, <%= userName %></h3>
                 </div>
                 <div class="right">
-                <li><a href="#">Transactions</a></li>
-                <li><a href="#">Customers</a></li>
-                <li><a href="#">Settings</a></li>
+                    <li><a href="#">Transactions</a></li>
+                    <li><a href="#">Customers</a></li>
+                    <li><a href="#">Settings</a></li>
                 </div>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="overview">
-            <h2>Overview</h2>
-            <div class="card">
-                <h3>Total Transactions</h3>
-                <p>500</p>
-            </div>
-            <div class="card">
-                <h3>Revenue</h3>
-                <p>$10,000</p>
-            </div>
-            <div class="card">
-                <h3>New Customers</h3>
-                <p>50</p>
-            </div>
-        </section>
-
-        <section id="transactions">
-            <h2>Recent Transactions</h2>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Customer</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>2024-05-01</td>
-                    <td>John Doe</td>
-                    <td>$100</td>
-                    <td>Success</td>
-                </tr>
-                <tr>
-                    <td>2024-04-28</td>
-                    <td>Jane Smith</td>
-                    <td>$50</td>
-                    <td>Failed</td>
-                </tr>
-                <!-- Add more transaction rows as needed -->
-            </table>
-        </section>
+        <div class="BankAcctList"> 
+            <h1>BANK ACCOUNT LIST</h1><br>
+             <% List<BankAccount> balist = (List<BankAccount>)session.getAttribute("Balist"); 
+                if(balist != null){
+                    for(int i= 0; i < balist.size(); i++){ 
+                        BankAccount ba = balist.get(i); %>
+                       
+                        <h2>Bank Account No : <%= ba.getBankAcctNo() %></h2>
+                        <h2>Bank Account Name : <%= ba.getBankAcctName() %></h2>
+                        <h2>Bank IFSC Code : <%= ba.getBankIFSCCode() %></h2>
+                        <h2>Current Bank Balance : <%= ba.getCurrBankBal() %></h2>
+                    <% }
+                } %>
+            <form action="AddBankAccServlets">
+                <input type="submit" value="Add Bank Account">
+            </form>
+        </div>
     </main>
 
     <footer>
