@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,26 +14,32 @@ public class BankAccDAO {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/userdb", "root", "9490");
     }
 
-    public int addBankAcct(BankAccount ba) throws SQLException {
+    public String addBank(BankAccount bank) {
+        String result = "Added";
         try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO bankaccount VALUES (?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement ps = con.prepareStatement("INSERT INTO bankaccount (BankAcctNo, BankAcctName, BankAcctTypeId, BankIFSCCode, BankPin, phone, CurrBankBal) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
-            ps.setString(1, ba.getBankAcctNo());
-            ps.setString(2, ba.getBankAcctName());
-            ps.setLong(3, ba.getBankAcctTypeId());
-            ps.setString(4, ba.getBankIFSCCode());
-            ps.setString(5, ba.getPhone());
-            ps.setDouble(6, ba.getCurrBankBal());
+            ps.setString(1, bank.getBankAcctNo());
+            ps.setString(2, bank.getBankAcctName());
+            ps.setString(3, bank.getBankAcctTypeId());
+            ps.setString(4, bank.getBankIFSCCode());
+            ps.setString(5, bank.getBankPin());
+            ps.setString(6, bank.getPhone());
+            ps.setDouble(7, bank.getCurrBankBal());
 
-            return ps.executeUpdate();
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            result = "Failed to add";
         }
+        return result;
     }
 
-    public List<BankAccount> bankAcctList(String phone) throws SQLException {
+    public List<BankAccount> bankAcctList(String phone) {
         List<BankAccount> balist = new ArrayList<>();
 
         try (Connection con = getConnection();
-             PreparedStatement st = con.prepareStatement("SELECT BankAcctNo, BankAcctName, BankIFSCCode, CurrBankBalance FROM BankAccount WHERE phone=?")) {
+             PreparedStatement st = con.prepareStatement("SELECT BankAcctNo, BankAcctName, BankIFSCCode, CurrBankBal FROM bankaccount WHERE phone=?")) {
 
             st.setString(1, phone);
 
@@ -44,10 +49,12 @@ public class BankAccDAO {
                     b.setBankAcctNo(rs.getString("BankAcctNo"));
                     b.setBankAcctName(rs.getString("BankAcctName"));
                     b.setBankIFSCCode(rs.getString("BankIFSCCode"));
-                    b.setCurrBankBal(rs.getDouble("CurrBankBalance"));
+                    b.setCurrBankBal(rs.getDouble("CurrBankBal"));
                     balist.add(b);
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return balist;

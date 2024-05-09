@@ -1,7 +1,7 @@
+
 import java.io.IOException;
 import java.sql.SQLException;
 
-import Entity.BankAccount;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,22 +25,35 @@ public class AddBankAccServlets extends HttpServlet {
         String bankIFSCCode = request.getParameter("bankIFSCCode");
         String bankPin = request.getParameter("bankPin");
         
+        BankAccount ba = new BankAccount(bankAcctNo,bankAcctName,bankAcctTypeId,bankIFSCCode,bankPin, bankPin, 0);
+        BankAccDAO BDAO=new BankAccDAO();
+        String result=BDAO.addBank(ba);
+        response.getWriter().print(result);
+//        ba.setBankAcctName(bankAcctNo);
+//        ba.setBankAcctName(bankAcctName);
+//        ba.setBankAcctTypeId(bankAcctTypeId);
+//        ba.setBankIFSCCode(bankIFSCCode);
+//        ba.setBankPin(bankPin);
+//        ba.setCurrBankBal(2000);
+
+     
         HttpSession session = request.getSession();
         String phone = (String) session.getAttribute("uname");
-        
-        BankAccount ba = new BankAccount(phone, bankAcctNo, bankAcctName, bankAcctTypeId, bankIFSCCode, bankPin, 0);
-        
-        BankAccDAO BDAO = new BankAccDAO();
-        String result = null;
-        result = BDAO.addBank(ba);
-		if (result.equals("SUCCESS")) {
-		    RequestDispatcher rd = request.getRequestDispatcher("/Dashboard.jsp");
-		    rd.forward(request, response);
-		} else {
-		    response.setContentType("text/html");
-		    response.getWriter().write("Failed to add bank account. Please check your details.");
-		    RequestDispatcher rd = request.getRequestDispatcher("/AddBankAcct.jsp");
-		    rd.include(request, response);
-		}
+        ba.setPhone(phone);
+
+        try {
+            BankAccDAO db = new BankAccDAO();
+            if (db.addBank(ba) > 0) {
+                RequestDispatcher rd = request.getRequestDispatcher("/Dashboard.jsp");
+                rd.forward(request, response);
+            } else {
+                response.setContentType("text/html");
+                response.getWriter().write("PLEASE ENTER THE CORRECT BANK ACCOUNT DETAILS");
+                RequestDispatcher rd = request.getRequestDispatcher("/AddBankAcct.jsp");
+                rd.include(request, response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
