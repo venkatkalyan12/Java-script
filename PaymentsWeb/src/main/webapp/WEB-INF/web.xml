@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>PaymentsWebApp</display-name>
+  <welcome-file-list>
+    <welcome-file>memberRegistration.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>AddBankAccServlets</display-name>
+    <servlet-name>AddBankAccServlets</servlet-name>
+    <servlet-class>AddBankAccServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddBankAccServlets</servlet-name>
+    <url-pattern>/AddBankAccServlets</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>RegisterServlet</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>Servlets.RegisterServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+</servlet-mapping>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>LoginServlets</display-name>
+    <servlet-name>LoginServlets</servlet-name>
+    <servlet-class>Servlets.LoginServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlets</servlet-name>
+    <url-pattern>/LoginServlets</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddBankAccServlet</display-name>
+    <servlet-name>AddBankAccServlet</servlet-name>
+    <servlet-class>Servlets.AddBankAccServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddBankAccServlet</servlet-name>
+    <url-pattern>/AddBankAccServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AccListServlet</display-name>
+    <servlet-name>AccListServlet</servlet-name>
+    <servlet-class>Servlets.AccListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccListServlet</servlet-name>
+    <url-pattern>/AccListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddMoneyTOWallet</display-name>
+    <servlet-name>AddMoneyTOWallet</servlet-name>
+    <servlet-class>Servlets.AddMoneyTOWallet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddMoneyTOWallet</servlet-name>
+    <url-pattern>/AddMoneyTOWallet</url-pattern>
+  </servlet-mapping>
+</web-app>
